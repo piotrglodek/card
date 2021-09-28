@@ -41,7 +41,7 @@ export const Card = ({
   return (
     <section
       onClick={toggleSelected}
-      className={`${cardClass} border-${tagColor}`}>
+      className={`${cardClass} ${selected ? `border-${tagColor}` : ''} `}>
       <figure className='card__container-image'>
         <img className='card__image' src={imgSrc} alt={imgAlt} />
       </figure>
