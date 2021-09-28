@@ -4,6 +4,11 @@
   border-radius: 8px;
   cursor: pointer;
 
+  @include mq('desktop', $breakpoints) {
+    display: flex;
+    width: 340px;
+  }
+
   &:hover {
     background: #fff;
   }
@@ -23,15 +28,27 @@
 
   &__container-image {
     padding-bottom: 21px;
+    @include mq('desktop', $breakpoints) {
+      padding-bottom: 0;
+      padding-right: 15px;
+    }
   }
 
   &__image {
     display: block;
     width: 100%;
     height: 100px;
+    @include mq('desktop', $breakpoints) {
+      width: 100px;
+    }
   }
 
   &__container {
+    @include mq('desktop', $breakpoints) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
   }
 
   &__tag {
