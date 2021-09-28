@@ -23,6 +23,7 @@ export const Card = ({
 
   const [selected, setSelected] = useState(false);
   const toggleSelected = () => {
+    if (disabled) return;
     setSelected(prev => !prev);
   };
 
