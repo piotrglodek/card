@@ -20,10 +20,19 @@
 
   &--disabled {
     opacity: 0.4;
+    &:hover {
+      background: none;
+    }
   }
 
   &--disabled-error &__container {
     opacity: 0.4;
+  }
+
+  &--disabled-error {
+    &:hover {
+      background: none;
+    }
   }
 
   &__container-image {
