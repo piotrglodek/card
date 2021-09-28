@@ -1,23 +1,73 @@
-import houseMobile from 'assets/house_mobile.png';
+import { useEffect, useState } from 'react';
 
 type Props = {
   disabled?: boolean;
+  error?: boolean;
+  imgSrc: string;
+  imgAlt: string;
 };
 
-export const Card = ({ disabled }: Props) => {
+type cardClasses = {
+  card: string;
+  cardContainerImage: string;
+  cardImage: string;
+  cardContainer: string;
+  cardTag: string;
+  cardLead: string;
+  cardOverline: string;
+  cardMajor: string;
+};
+
+export const Card = ({ disabled, error, imgSrc, imgAlt }: Props) => {
+  const cardClasses = {
+    card: `card`,
+    cardContainerImage: `card__container-image`,
+    cardImage: `card__image`,
+    cardContainer: `card__container`,
+    cardTag: `card__tag overline-text color-blue800 bg-blue100`,
+    cardLead: `card__lead lead-text color-dark700`,
+    cardOverline: `card__overline-text overline-text color-dark500`,
+    cardMajor: `card__major-text major-text color-dark700`,
+  };
+  const [cardDefaultClasses, setCardDefaultClasses] =
+    useState<cardClasses>(cardClasses);
+
+  useEffect(() => {
+    const handleCardClasses = () => {
+      if (error) {
+        setCardDefaultClasses(prev => ({
+          ...prev,
+          cardTag: `card__tag overline-text color-red800 bg-red100`,
+        }));
+      }
+      if (disabled) {
+        setCardDefaultClasses(prev => ({
+          ...prev,
+          cardContainer: `card__container card__container--disabled`,
+        }));
+      }
+      if (disabled && error) {
+        setCardDefaultClasses(prev => ({
+          ...prev,
+          card: `card card--disabled`,
+        }));
+      }
+    };
+
+    handleCardClasses();
+  }, [error, disabled]);
+
   return (
-    <div className='card'>
-      <div className='card__container-image'>
-        <img className='card__image' src={houseMobile} alt='house' />
-      </div>
-      <div className='card__container'>
-        <p className='card__tag overline-text color-blue800 bg-blue100'>
-          tag text
-        </p>
-        <p className='card__lead lead-text'>lead text</p>
-        <p className='card__overline-text overline-text'>overline text</p>
-        <p className='card__major-text major-text'>major text</p>
-      </div>
-    </div>
+    <section className={cardDefaultClasses.card}>
+      <figure className={cardDefaultClasses.cardContainerImage}>
+        <img className='card__image' src={imgSrc} alt={imgAlt} />
+      </figure>
+      <article className={cardDefaultClasses.cardContainer}>
+        <p className={cardDefaultClasses.cardTag}>tag text</p>
+        <p className={cardDefaultClasses.cardLead}>0012-DE-Muller</p>
+        <p className={cardDefaultClasses.cardOverline}>Projekt:</p>
+        <p className={cardDefaultClasses.cardMajor}>Point 145</p>
+      </article>
+    </section>
   );
 };
