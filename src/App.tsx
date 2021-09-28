@@ -1,24 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Card } from 'components/Card/Card';
+import houseMobile from 'assets/house_mobile.png';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: 'column',
+        backgroundColor: '#c7c7c7',
+      }}>
+      <Card disabled imgSrc={houseMobile} imgAlt='house' />
+      <Card disabled error imgSrc={houseMobile} imgAlt='house' />
+      <Card imgSrc={houseMobile} imgAlt='house' />
+      <Card error imgSrc={houseMobile} imgAlt='house' />
     </div>
   );
 }
