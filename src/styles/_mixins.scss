@@ -1,0 +1,21 @@
+@mixin mq($mq-breakpoint, $mq-breakpoints) {
+  // If $mq-breakpoint is a key that exists in
+  // $mq-breakpoints, get and use the value
+  @if map-has-key($mq-breakpoints, $mq-breakpoint) {
+    $mq-breakpoint: map-get($mq-breakpoints, $mq-breakpoint);
+  } @else {
+    @error "Property #{$mq-breakpoint} must be one of these: mobile, tablet, desktop.";
+  }
+
+  @media screen and (min-width: #{$mq-breakpoint}) {
+    @content;
+  }
+}
+
+@mixin generateCSSPropertyWithColor($property, $prefix, $colors) {
+  @each $colorName, $color in $colors {
+    .#{$prefix}-#{$colorName} {
+      #{$property}: $color;
+    }
+  }
+}
