@@ -1,0 +1,36 @@
+.card {
+  width: 200px;
+  padding: 10px;
+  border-radius: 8px;
+
+  &__container-image {
+    padding-bottom: 21px;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: 100px;
+  }
+  &__container {
+  }
+
+  &__tag {
+    width: max-content;
+    height: 14px;
+    border-radius: 2px;
+    padding: 1px 4px;
+    text-transform: uppercase;
+  }
+
+  &__lead {
+    padding-bottom: 6px;
+    text-transform: uppercase;
+  }
+
+  &__overline-text {
+  }
+
+  &__major-text {
+  }
+}
