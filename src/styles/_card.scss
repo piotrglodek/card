@@ -2,6 +2,15 @@
   width: 200px;
   padding: 10px;
   border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background: #fff;
+  }
+
+  &--disabled {
+    opacity: 0.4;
+  }
 
   &__container-image {
     padding-bottom: 21px;
@@ -13,6 +22,9 @@
     height: 100px;
   }
   &__container {
+    &--disabled {
+      opacity: 0.4;
+    }
   }
 
   &__tag {
@@ -20,17 +32,19 @@
     height: 14px;
     border-radius: 2px;
     padding: 1px 4px;
-    text-transform: uppercase;
+    @extend %text-uppercase;
   }
 
   &__lead {
     padding-bottom: 6px;
-    text-transform: uppercase;
+    @extend %text-uppercase;
   }
 
   &__overline-text {
+    @extend %text-uppercase;
   }
 
   &__major-text {
+    @extend %text-capitalize;
   }
 }
