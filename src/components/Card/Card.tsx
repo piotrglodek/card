@@ -1,72 +1,58 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import classNames from 'classnames';
 
 type Props = {
   disabled?: boolean;
   error?: boolean;
   imgSrc: string;
   imgAlt: string;
+  tagColor?: string;
+  tagBg?: string;
 };
 
-type cardClasses = {
-  card: string;
-  cardContainerImage: string;
-  cardImage: string;
-  cardContainer: string;
-  cardTag: string;
-  cardLead: string;
-  cardOverline: string;
-  cardMajor: string;
-};
+export const Card = ({
+  disabled = false,
+  error = false,
+  imgSrc,
+  imgAlt,
+  tagColor = 'blue800',
+  tagBg = 'blue100',
+}: Props) => {
+  tagColor = error ? 'red800' : tagColor;
+  tagBg = error ? 'red100' : tagBg;
 
-export const Card = ({ disabled, error, imgSrc, imgAlt }: Props) => {
-  const cardClasses = {
-    card: `card`,
-    cardContainerImage: `card__container-image`,
-    cardImage: `card__image`,
-    cardContainer: `card__container`,
-    cardTag: `card__tag overline-text color-blue800 bg-blue100`,
-    cardLead: `card__lead lead-text color-dark700`,
-    cardOverline: `card__overline-text overline-text color-dark500`,
-    cardMajor: `card__major-text major-text color-dark700`,
+  const [selected, setSelected] = useState(false);
+  const toggleSelected = () => {
+    setSelected(prev => !prev);
   };
-  const [cardDefaultClasses, setCardDefaultClasses] =
-    useState<cardClasses>(cardClasses);
 
-  useEffect(() => {
-    const handleCardClasses = () => {
-      if (error) {
-        setCardDefaultClasses(prev => ({
-          ...prev,
-          cardTag: `card__tag overline-text color-red800 bg-red100`,
-        }));
-      }
-      if (disabled) {
-        setCardDefaultClasses(prev => ({
-          ...prev,
-          cardContainer: `card__container card__container--disabled`,
-        }));
-      }
-      if (disabled && error) {
-        setCardDefaultClasses(prev => ({
-          ...prev,
-          card: `card card--disabled`,
-        }));
-      }
-    };
-
-    handleCardClasses();
-  }, [error, disabled]);
+  const cardClass = classNames({
+    card: true,
+    'card--disabled': disabled && error === false,
+    'card--disabled-error': disabled && error,
+    'card--selected': selected,
+  });
+  const cardTagClass = classNames({
+    card__tag: true,
+    'overline-text': true,
+  });
 
   return (
-    <section className={cardDefaultClasses.card}>
-      <figure className={cardDefaultClasses.cardContainerImage}>
+    <section
+      onClick={toggleSelected}
+      className={`${cardClass} border-${tagColor}`}>
+      <figure className='card__container-image'>
         <img className='card__image' src={imgSrc} alt={imgAlt} />
       </figure>
-      <article className={cardDefaultClasses.cardContainer}>
-        <p className={cardDefaultClasses.cardTag}>tag text</p>
-        <p className={cardDefaultClasses.cardLead}>0012-DE-Muller</p>
-        <p className={cardDefaultClasses.cardOverline}>Projekt:</p>
-        <p className={cardDefaultClasses.cardMajor}>Point 145</p>
+      <article className='card__container'>
+        <p className={`${cardTagClass} color-${tagColor} bg-${tagBg}`}>
+          tag text
+        </p>
+        <p className='card__lead lead-text color-dark700'>0012-DE-Muller</p>
+        <p className='card__overline-text overline-text color-dark500'>
+          Projekt:
+        </p>
+        <p className='card__major-text major-text color-dark700'>Point 145</p>
       </article>
     </section>
   );
