@@ -1,8 +1,9 @@
 .card {
   width: 200px;
-  padding: 10px;
-  border-radius: 8px;
+  padding: $cardDefaultSpacing;
+  border-radius: $cardDefaultBorderRadius;
   cursor: pointer;
+  border: $cardDefaultBorderWidth solid transparent;
 
   @include mq('desktop', $breakpoints) {
     display: flex;
@@ -10,12 +11,11 @@
   }
 
   &:hover {
-    background: #fff;
+    background-color: $cardDefaultHoverBgColor;
   }
 
   &--selected {
-    border-style: solid;
-    border-width: 1px;
+    opacity: $cardDefaultDisabledOpacity;
   }
 
   &--disabled {
@@ -25,8 +25,7 @@
     }
   }
 
-  &--disabled-error &__container {
-    opacity: 0.4;
+    opacity: $cardDefaultDisabledOpacity;
   }
 
   &--disabled-error {
@@ -63,7 +62,7 @@
   &__tag {
     width: max-content;
     height: 14px;
-    border-radius: 2px;
+    border-radius: $cardTagDefaultBorderRadius;
     padding: 1px 4px;
     @extend %text-uppercase;
   }
