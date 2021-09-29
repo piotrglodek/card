@@ -63,7 +63,13 @@ export const Card = (props: TCardProps) => {
       onClick={toggleSelected}
       className={`${cardClass} ${selected ? `border-${tagColor}` : ''} `}>
       <figure className='card__container-image'>
-        <img className='card__image' src={imgSrc} alt={imgAlt} />
+        <div
+          className='card__image'
+          style={{ backgroundImage: `url(${src})` }}
+          role='img'
+          aria-label={alt}
+          title={alt}
+        />
       </figure>
       <article className='card__container'>
         <p className={`${cardTagClass} color-${tagColor} bg-${tagBg}`}>
