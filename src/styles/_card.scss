@@ -25,10 +25,7 @@
   }
 
   &--disabled {
-    opacity: 0.4;
-    &:hover {
-      background: none;
-    }
+    cursor: default;
   }
 
   &--disabled-error {
