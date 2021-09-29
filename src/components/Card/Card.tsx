@@ -28,16 +28,18 @@ export type TCardProps = {
   majorText: string;
 };
 
-export const Card = ({
+export const Card = (props: TCardProps) => {
+  const {
+    error = false,
   disabled = false,
-  error = false,
-  imgSrc,
-  imgAlt,
-  tagColor = 'blue800',
-  tagBg = 'blue100',
-}: Props) => {
-  tagColor = error ? 'red800' : tagColor;
-  tagBg = error ? 'red100' : tagBg;
+    type = 'informational',
+    tagType = 'default',
+    tagText,
+    img: { src, alt },
+    leadText,
+    majorText,
+    overlineText,
+  } = props;
 
   const [selected, setSelected] = useState(false);
   const toggleSelected = () => {
