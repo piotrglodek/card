@@ -1,13 +1,31 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 
-type Props = {
+type TTagVariants = 'default' | 'minor' | 'light';
+
+type TCardType =
+  | 'success'
+  | 'informational'
+  | 'error'
+  | 'attention'
+  | 'warning'
+  | 'neutral';
+
+type TImg = {
+  src: string;
+  alt: string;
+};
+
+export type TCardProps = {
   disabled?: boolean;
   error?: boolean;
-  imgSrc: string;
-  imgAlt: string;
-  tagColor?: string;
-  tagBg?: string;
+  type?: TCardType;
+  tagType?: TTagVariants;
+  tagText: string;
+  img: TImg;
+  leadText: string;
+  overlineText: string;
+  majorText: string;
 };
 
 export const Card = ({
