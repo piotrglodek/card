@@ -1,4 +1,4 @@
-@mixin mq($mq-breakpoint, $mq-breakpoints) {
+@mixin mq($mq-breakpoint, $mq-breakpoints: $breakpoints) {
   // If $mq-breakpoint is a key that exists in
   // $mq-breakpoints, get and use the value
   @if map-has-key($mq-breakpoints, $mq-breakpoint) {
@@ -16,6 +16,34 @@
   @each $colorName, $color in $colors {
     .#{$prefix}-#{$colorName} {
       #{$property}: $color;
+    }
+  }
+}
+
+@mixin generateCardClasses() {
+  @each $cardType, $cardColor in $cardTypes {
+    .#{$cardType}.card {
+      border-color: map-get($colors, '#{$cardColor}800');
+    }
+    @each $tagType in $tagTypes {
+      @if $tagType == default {
+        .#{$cardType}-#{$tagType}.card__tag {
+          color: map-get($colors, '#{$cardColor}100');
+          background-color: map-get($colors, '#{$cardColor}800');
+        }
+      } @else if $tagType == minor {
+        .#{$cardType}-#{$tagType}.card__tag {
+          color: map-get($colors, '#{$cardColor}800');
+          background-color: map-get($colors, '#{$cardColor}100');
+        }
+      } @else {
+        .#{$cardType}-#{$tagType}.card__tag {
+          color: map-get($colors, '#{$cardColor}800');
+          border: 1px solid map-get($colors, '#{$cardColor}800');
+          display: grid;
+          align-content: center;
+        }
+      }
     }
   }
 }
