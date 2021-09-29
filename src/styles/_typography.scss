@@ -13,19 +13,16 @@ body {
 
 .overline-text {
   font-size: 9px;
-  line-height: 12px;
+  line-height: (12px / 9px);
   letter-spacing: 0.5px;
-}
-
-.lead-text,
-.major-text {
-  line-height: 24px;
 }
 
 .lead-text {
   font-size: 18px;
+  line-height: (24px / 18px);
 }
 
 .major-text {
   font-size: 16px;
+  line-height: (24px / 16px);
 }
