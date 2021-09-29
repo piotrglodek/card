@@ -4,6 +4,8 @@
   border-radius: $cardDefaultBorderRadius;
   cursor: pointer;
   border: $cardDefaultBorderWidth solid transparent;
+  background-color: transparent;
+  transition: all 0.3s ease;
 
   @include mq('desktop') {
     display: flex;
@@ -15,6 +17,10 @@
   }
 
   &--selected {
+    border-color: inherit;
+  }
+
+  &--disabled &__container {
     opacity: $cardDefaultDisabledOpacity;
   }
 
@@ -25,12 +31,14 @@
     }
   }
 
+  &--disabled-error {
     opacity: $cardDefaultDisabledOpacity;
+    cursor: default;
   }
 
   &--disabled-error {
     &:hover {
-      background: none;
+      background-color: none;
     }
   }
 
@@ -64,6 +72,10 @@
     height: 14px;
     border-radius: $cardTagDefaultBorderRadius;
     padding: 1px 4px;
+    &--light {
+      border: 1px solid inherit;
+      background-color: transparent;
+    }
     @extend %text-uppercase;
   }
 
