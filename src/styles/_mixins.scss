@@ -1,4 +1,4 @@
-@mixin mq($mq-breakpoint, $mq-breakpoints) {
+@mixin mq($mq-breakpoint, $mq-breakpoints: $breakpoints) {
   // If $mq-breakpoint is a key that exists in
   // $mq-breakpoints, get and use the value
   @if map-has-key($mq-breakpoints, $mq-breakpoint) {
