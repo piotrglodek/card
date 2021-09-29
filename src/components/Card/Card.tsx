@@ -31,7 +31,7 @@ export type TCardProps = {
 export const Card = (props: TCardProps) => {
   const {
     error = false,
-  disabled = false,
+    disabled = false,
     type = 'informational',
     tagType = 'default',
     tagText,
@@ -53,6 +53,7 @@ export const Card = (props: TCardProps) => {
     'card--disabled-error': disabled && error,
     'card--selected': selected,
   });
+
   const cardTagClass = classNames({
     card__tag: true,
     'overline-text': true,
@@ -61,7 +62,7 @@ export const Card = (props: TCardProps) => {
   return (
     <section
       onClick={toggleSelected}
-      className={`${cardClass} ${selected ? `border-${tagColor}` : ''} `}>
+      className={`${cardClass} ${selected ? `${type}` : ''} `}>
       <figure className='card__container-image'>
         <div
           className='card__image'
@@ -72,14 +73,12 @@ export const Card = (props: TCardProps) => {
         />
       </figure>
       <article className='card__container'>
-        <p className={`${cardTagClass} color-${tagColor} bg-${tagBg}`}>
-          tag text
+        <p className={`${cardTagClass} ${type}-${tagType}`}>{tagText}</p>
+        <p className='card__lead lead-text color-gray700'>{leadText}</p>
+        <p className='card__overline-text overline-text color-gray500'>
+          {overlineText}
         </p>
-        <p className='card__lead lead-text color-dark700'>0012-DE-Muller</p>
-        <p className='card__overline-text overline-text color-dark500'>
-          Projekt:
-        </p>
-        <p className='card__major-text major-text color-dark700'>Point 145</p>
+        <p className='card__major-text major-text color-gray700'>{majorText}</p>
       </article>
     </section>
   );
