@@ -41,7 +41,7 @@ export const Card = (props: TCardProps) => {
     overlineText,
   } = props;
 
-  const [selected, setSelected] = useState(false);
+  const [selected, setSelected] = useState<boolean>(false);
   const toggleSelected = () => {
     if (disabled) return;
     setSelected(prev => !prev);
