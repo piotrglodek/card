@@ -51,8 +51,9 @@
   }
 
   &__image {
-    display: block;
-    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     height: 100px;
     @include mq('desktop') {
       width: 100px;
