@@ -22,22 +22,22 @@
 
 @mixin generateCardClasses() {
   @each $cardType, $cardColor in $cardTypes {
-    .#{$cardType}.card {
+    .card--#{$cardType}.card {
       border-color: map-get($colors, '#{$cardColor}800');
     }
     @each $tagType in $tagTypes {
       @if $tagType == default {
-        .#{$cardType}-#{$tagType}.card__tag {
+        .card--#{$cardType}-#{$tagType}.card__tag {
           color: map-get($colors, '#{$cardColor}100');
           background-color: map-get($colors, '#{$cardColor}800');
         }
       } @else if $tagType == minor {
-        .#{$cardType}-#{$tagType}.card__tag {
+        .card--#{$cardType}-#{$tagType}.card__tag {
           color: map-get($colors, '#{$cardColor}800');
           background-color: map-get($colors, '#{$cardColor}100');
         }
       } @else {
-        .#{$cardType}-#{$tagType}.card__tag {
+        .card--#{$cardType}-#{$tagType}.card__tag {
           color: map-get($colors, '#{$cardColor}800');
           border: 1px solid map-get($colors, '#{$cardColor}800');
           display: grid;

@@ -62,7 +62,7 @@ export const Card = (props: TCardProps) => {
   return (
     <section
       onClick={toggleSelected}
-      className={`${cardClass} ${selected ? `${type}` : ''} `}>
+      className={`${cardClass} ${selected ? `card--${type}` : ''} `}>
       <figure className='card__container-image'>
         <div
           className='card__image'
@@ -73,7 +73,7 @@ export const Card = (props: TCardProps) => {
         />
       </figure>
       <article className='card__container'>
-        <p className={`${cardTagClass} ${type}-${tagType}`}>{tagText}</p>
+        <p className={`${cardTagClass} card--${type}-${tagType}`}>{tagText}</p>
         <p className='card__lead lead-text color-gray700'>{leadText}</p>
         <p className='card__overline-text overline-text color-gray500'>
           {overlineText}
