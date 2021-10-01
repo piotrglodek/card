@@ -1,27 +1,47 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 
-type Props = {
-  disabled?: boolean;
-  error?: boolean;
-  imgSrc: string;
-  imgAlt: string;
-  tagColor?: string;
-  tagBg?: string;
+type TTagVariants = 'default' | 'minor' | 'light';
+
+type TCardType =
+  | 'success'
+  | 'informational'
+  | 'error'
+  | 'attention'
+  | 'warning'
+  | 'neutral';
+
+type TImg = {
+  src: string;
+  alt: string;
 };
 
-export const Card = ({
-  disabled = false,
-  error = false,
-  imgSrc,
-  imgAlt,
-  tagColor = 'blue800',
-  tagBg = 'blue100',
-}: Props) => {
-  tagColor = error ? 'red800' : tagColor;
-  tagBg = error ? 'red100' : tagBg;
+export type TCardProps = {
+  disabled?: boolean;
+  error?: boolean;
+  type?: TCardType;
+  tagType?: TTagVariants;
+  tagText: string;
+  img: TImg;
+  leadText: string;
+  overlineText: string;
+  majorText: string;
+};
 
-  const [selected, setSelected] = useState(false);
+export const Card = (props: TCardProps) => {
+  const {
+    error = false,
+    disabled = false,
+    type = 'informational',
+    tagType = 'default',
+    tagText,
+    img: { src, alt },
+    leadText,
+    majorText,
+    overlineText,
+  } = props;
+
+  const [selected, setSelected] = useState<boolean>(false);
   const toggleSelected = () => {
     if (disabled) return;
     setSelected(prev => !prev);
@@ -33,6 +53,7 @@ export const Card = ({
     'card--disabled-error': disabled && error,
     'card--selected': selected,
   });
+
   const cardTagClass = classNames({
     card__tag: true,
     'overline-text': true,
@@ -41,19 +62,23 @@ export const Card = ({
   return (
     <section
       onClick={toggleSelected}
-      className={`${cardClass} ${selected ? `border-${tagColor}` : ''} `}>
+      className={`${cardClass} ${selected ? `card--${type}` : ''} `}>
       <figure className='card__container-image'>
-        <img className='card__image' src={imgSrc} alt={imgAlt} />
+        <div
+          className='card__image'
+          style={{ backgroundImage: `url(${src})` }}
+          role='img'
+          aria-label={alt}
+          title={alt}
+        />
       </figure>
       <article className='card__container'>
-        <p className={`${cardTagClass} color-${tagColor} bg-${tagBg}`}>
-          tag text
+        <p className={`${cardTagClass} card--${type}-${tagType}`}>{tagText}</p>
+        <p className='card__lead lead-text color-gray700'>{leadText}</p>
+        <p className='card__overline-text overline-text color-gray500'>
+          {overlineText}
         </p>
-        <p className='card__lead lead-text color-dark700'>0012-DE-Muller</p>
-        <p className='card__overline-text overline-text color-dark500'>
-          Projekt:
-        </p>
-        <p className='card__major-text major-text color-dark700'>Point 145</p>
+        <p className='card__major-text major-text color-gray700'>{majorText}</p>
       </article>
     </section>
   );

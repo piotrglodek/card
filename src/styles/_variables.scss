@@ -1,3 +1,14 @@
+$cardDefaultSpacing: 10px;
+$cardDefaultBorderRadius: 8px;
+$cardDefaultHoverBgColor: #ffffff;
+$cardDefaultBorderWidth: 1px;
+$cardDefaultDisabledOpacity: 0.4;
+$cardTagDefaultBorderRadius: 2px;
+
+$cardTypes: 'success' 'green', 'informational' 'blue', 'error' 'red',
+  'attention' 'brown', 'warning' 'orange', 'neutral' 'gray';
+$tagTypes: 'default', 'minor', 'light';
+
 $breakpoints: (
   'mobile': 0,
   'tablet': 800px,
@@ -38,22 +49,44 @@ $colors: (
   'green800': #267744,
   'green900': #1e5d23,
   'green1000': #133716,
-  'dark50': #f5f4f1,
-  'dark100': #e4e2e1,
-  'dark200': #cac9c9,
-  'dark300': #adacae,
-  'dark400': #949397,
-  'dark500': #7e7c82,
-  'dark600': #6c6a70,
-  'dark700': #5c5a5f,
-  'dark800': #4b4a4e,
-  'dark900': #302f32,
-  'dark1000': #000000,
+  'gray50': #f5f4f1,
+  'gray100': #e4e2e1,
+  'gray200': #cac9c9,
+  'gray300': #adacae,
+  'gray400': #949397,
+  'gray500': #7e7c82,
+  'gray600': #6c6a70,
+  'gray700': #5c5a5f,
+  'gray800': #4b4a4e,
+  'gray900': #302f32,
+  'gray1000': #000000,
+  'orange50': #fff8e2,
+  'orange100': #ffebb6,
+  'orange200': #fedf88,
+  'orange300': #fed45b,
+  'orange400': #fec93e,
+  'orange500': #fec02f,
+  'orange600': #ffb311,
+  'orange700': #fe9f16,
+  'orange800': #fe8b1b,
+  'orange900': #fd6f22,
+  'orange1000': #c54914,
+  'brown50': #f5edea,
+  'brown100': #eedfd9,
+  'brown200': #e5ccc1,
+  'brown300': #dab6a5,
+  'brown400': #cfa089,
+  'brown500': #c4896d,
+  'brown600': #b57554,
+  'brown700': #aa6742,
+  'brown800': #9d562d,
+  'brown900': #93491d,
+  'brown1000': #642500,
 );
 
 @include generateCSSPropertyWithColor(color, color, $colors);
 @include generateCSSPropertyWithColor(background-color, bg, $colors);
-@include generateCSSPropertyWithColor(border-color, border, $colors);
+@include generateCardClasses();
 
 %text-uppercase {
   text-transform: uppercase;
